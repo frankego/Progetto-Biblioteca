@@ -16,12 +16,14 @@ public abstract class AbstractDAO {
 	
 	public static Connection connection() throws SQLException, IOException{
 		
+		if(serverdata.length() == 0){
 		FileReader reader = new FileReader("db.txt");
         BufferedReader bufferedReader = new BufferedReader(reader);
         serverdata = bufferedReader.readLine();
         DBuser = bufferedReader.readLine();
         DBpass = bufferedReader.readLine();
         reader.close();
+		}
 		Connection con=DriverManager.getConnection(serverdata, DBuser , DBpass);
 		return con;
 	}
